@@ -1,0 +1,265 @@
+<!-- layout.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}Trip Planner{% endblock %}</title>
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Syncopate:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/sparkle.css" rel="stylesheet">
+  </head>
+  <body>
+  	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">TRIP PLANNER</a>
+				</div>
+
+				<div id="nav-items" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+<!-- 						<li><a href="/search">search</a></li>
+						<li><a href="/add">add a page</a></li>
+						<li><a href="/about">about us</a></li> -->
+					</ul>
+				</div>
+			</div>
+
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+
+
+		
+		<div class="map-row row">
+			<div id="map-canvas" class="col-xs-12 col-lg-8"></div>
+			
+			<div class="dropdowns col-xs-12 col-md-6 col-lg-4">
+				<div class="schedule-span text-center">
+					<span>PICK EVENTS</span>
+				</div>
+
+				<div class="panel panel-default">
+				  <div class="panel-body">
+				    	<div class="row">
+				    		<div class="hotels_dd col-xs-10 col-sm-11 col-lg-10">
+				    			<label>Hotels</label>
+								<select class="form-control">
+								{% for hotel in all_hotels %}
+								  <option value="{{ hotel.name }}">{{ hotel.name }}</option>
+								{% endfor %}
+								</select>
+				    		</div>
+
+				    		<div class="hotels-add-dd col-xs-2 col-sm-1 col-lg-2">
+				    			<button class="btn btn-circle btn-info btn-sm">+</button>
+				    		</div>
+						</div>
+
+						<div class="row">
+							<div class="thingsToDo_dd col-xs-10 col-sm-11 col-lg-10">
+								<label>Things To Do</label>
+								<select class="form-control">
+								{% for thingsToDo in all_things_to_do %}
+								  <option value="{{ thingsToDo.name }}">{{ thingsToDo.name }}</option>
+								{% endfor %}
+								</select>
+							</div>
+							
+							<div class="add-dd col-xs-2 col-sm-1 col-lg-2">
+				    			<button class="btn btn-circle btn-info btn-sm">+</button>
+				    		</div>					
+						</div>
+
+						<div class="row">
+							<div class="restaurants_dd col-xs-10 col-sm-11 col-lg-10">
+								<label>Restaurants</label>
+								<select class="form-control">
+								{% for restaurants in all_restaurants %}
+								  <option value="{{ restaurants.name }}">{{ restaurants.name }}</option>
+								{% endfor %}
+								</select>
+							</div>
+							
+							<div class="add-dd col-xs-2 col-sm-1 col-lg-2">
+				    			<button class="btn btn-circle btn-info btn-sm">+</button>
+				    		</div>
+						</div>
+				  </div>
+				</div>
+
+				
+			</div>
+
+			<div class="daily_plan col-xs-12 col-md-6 col-lg-4">
+					<div id="day_num" class="text-center schedule-span">
+					<span>PLAN YOUR DAY</span>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					
+
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					
+						<ul class="pager">
+							<li><a id="btn_1" href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a class="sparkley" href="#">+</a></li>
+						</ul>
+<!-- 					
+					    <button id="btn_1" class="btn btn-circle btn-days btn-sm">1</button>
+					    <button class="btn btn-circle btn-success">+</button> -->
+					  </div>
+					  <div class="panel-body">
+						<div class="row" style="height: 30px">
+							<div class="plans my-hotel">
+								<div class="col-xs-9">
+									<label>MY HOTEL</label>
+									<div id="hotel-name">The name of the hotel</div>
+								</div>
+								<div class="col-xs-3">
+									<button class="btn btn-circle btn-danger btn-sm">x</button>
+								</div>
+								  <ul>
+								    <li></li>
+								    <li></li>
+								    <li></li>
+								    <li></li>
+								    <li></li>
+								  </ul>
+
+							</div>
+
+							<div class="plans my-restaurant">
+								<div class="col-xs-9">
+									<label>MY RESTAURANT</label>
+									<div id="restaurant-name">The name of the restaurant</div>
+								</div>
+								<div class="col-xs-3">
+									<button class="btn btn-circle btn-danger btn-sm">x</button>
+								</div>
+								  <ul>
+								    <li></li>
+								    <li></li>
+								    <li></li>
+								    <li></li>
+								    <li></li>
+								  </ul>
+							</div>
+
+							<div class="plans my-things-to-do">
+								<div class="col-xs-9">
+									<label>MY THINGS TO DO</label>
+									<div id="my-things-to-do">places to go things to do</div>
+								</div>
+								<div class="col-xs-3">
+									<button class="btn btn-circle btn-danger btn-sm">x</button>
+								</div>
+								  <ul>
+								    <li></li>
+								    <li></li>
+								    <li></li>
+								    <li></li>
+								    <li></li>
+								  </ul>
+							</div>
+
+						</div>
+					    
+
+
+					  </div>
+					</div>
+			</div>
+
+		</div>
+		
+
+		<div class="map-container container content">
+		   {% block content %}{% endblock %}
+		</div>
+		<div id="footer" class="text-center text-muted pull-left">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			TRIP PLANNER BY FULLSTACK ACADEMY
+		</div>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATWRYxHEARMi9XEKfZDtyjX33PSxZPqgk&sensor=true"></script>
+		<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+		<script src="/js/sparkle.js"></script>
+
+		<script type="text/javascript">
+			function initialize_gmaps() {
+			    // initialize new google maps LatLng object
+			    var myLatlng = new google.maps.LatLng(40.705189,-74.009209);
+			    // set the map options hash
+			    var mapOptions = {
+			        center: myLatlng,
+			        zoom: 16,
+			        mapTypeId: google.maps.MapTypeId.ROADMAP
+			    };
+			    // get the maps div's HTML obj
+			    var map_canvas_obj = document.getElementById("map-canvas");
+			    // initialize a new Google Map with the options
+			    var map = new google.maps.Map(map_canvas_obj, mapOptions);
+			    // Add the marker to the map
+
+			   //  var image = {
+				  //   url: 'images/marker.png',
+				  //   // This marker is 20 pixels wide by 32 pixels tall.
+				  //   size: new google.maps.Size(20, 32),
+				  //   // The origin for this image is 0,0.
+				  //   origin: new google.maps.Point(0,0),
+				  //   // The anchor for this image is the base of the flagpole at 0,32.
+				  //   anchor: new google.maps.Point(0, 32)
+				  // };
+
+
+
+				var infowindow = new google.maps.InfoWindow({
+				  content: "hello world!!!!!!!"
+				});
+
+			    var marker = new google.maps.Marker({
+			        position: myLatlng,
+			        title: "Hello World!"
+			    });
+
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.open(map,marker);
+				});
+
+			    // Add the marker to the map by calling setMap()
+			    marker.setMap(map);
+			}
+
+
+			$(document).ready(function() {
+			    initialize_gmaps();
+			});
+
+			$( "#btn_1" ).click(function() {
+				$("#day_num").html("DAY " + this.innerHTML);
+			});
+		</script>
+  </body>
+</html>
